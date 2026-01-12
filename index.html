@@ -60,11 +60,27 @@
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(8px);
         }
+        /* Revenue Badge Styles */
+        .rev-badge {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f1f5f9;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+        .rev-val-up { color: #059669; } /* Emerald 600 */
+        .rev-val-down { color: #dc2626; } /* Rose 600 */
+        .rev-val-flat { color: #64748b; } /* Slate 500 */
     </style>
 </head>
 <body class="bg-slate-100 text-slate-800 pb-12">
 
-    <!-- Sticky Header (Removed Prices) -->
+    <!-- Sticky Header -->
     <header class="sticky-header shadow-sm border-b border-slate-200 px-4 py-3 flex justify-between items-center">
         <div class="flex items-center gap-2">
             <span class="bg-teal-500 text-white w-8 h-8 rounded-lg flex items-center justify-center text-lg shadow-md">⚡</span>
@@ -73,7 +89,6 @@
                 <p class="text-[10px] text-slate-500">股東戰情室 - 邏輯架構版</p>
             </div>
         </div>
-        <!-- Right side simplified -->
         <div class="text-right">
             <div class="text-[10px] text-slate-400 bg-slate-100 px-2 py-1 rounded-full border border-slate-200">
                 長期持有策略
@@ -83,13 +98,11 @@
 
     <div class="max-w-md mx-auto px-3 py-4 space-y-4">
         
-        <!-- Info Bar (Generalized) -->
+        <!-- Info Bar -->
         <div class="bg-white rounded-xl p-3 shadow-sm border border-slate-200 text-xs text-slate-500 flex justify-between items-center">
             <span><strong>關鍵事件提醒：</strong></span>
             <span class="bg-blue-50 text-blue-600 px-2 py-1 rounded font-bold">留意每季台積電法說</span>
         </div>
-
-        <!-- REMOVED: Chip Analysis Guide -->
 
         <!-- TIER 0: The Ceiling (TSMC) -->
         <div>
@@ -102,15 +115,26 @@
                 </div>
 
                 <div class="relative z-10">
-                    <div class="flex justify-between items-start mb-3">
+                    <div class="flex justify-between items-start mb-2">
                         <h2 class="text-lg font-bold text-slate-800">台積電 (2330)</h2>
                         <span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-bold">CoWoS 產能</span>
+                    </div>
+
+                    <!-- Revenue Stats -->
+                    <div class="grid grid-cols-2 gap-2 mb-3">
+                        <div class="rev-badge">
+                            <span>MoM</span>
+                            <span class="rev-val-up">+2.4%</span>
+                        </div>
+                        <div class="rev-badge">
+                            <span>YoY</span>
+                            <span class="rev-val-up">+33.0%</span>
+                        </div>
                     </div>
                     
                     <div class="why-watch-box why-tier-0 mt-0">
                         <span class="why-label">為什麼要觀察台積電？</span>
-                        它是源頭活水。AI 晶片 (GPU) 100% 卡在 CoWoS 封裝產能。
-                        <br><strong>判斷邏輯：</strong> 只要法說會提到「產能緊缺」或「擴產加速」，台達電的長線趨勢就是安全的。
+                        源頭活水。判斷邏輯：只要 YoY 維持雙位數成長，且法說會確認產能緊缺，AI 大趨勢就不會變。
                     </div>
                 </div>
             </div>
@@ -128,26 +152,51 @@
             <div class="space-y-3">
                 <!-- Aspeed -->
                 <div class="bg-white border-t-4 border-amber-400 rounded-xl p-4 shadow-sm">
-                    <div class="flex justify-between items-center mb-1">
+                    <div class="flex justify-between items-center mb-2">
                         <h4 class="font-bold text-slate-700">信驊 (5274)</h4>
                         <span class="text-[10px] text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">BMC 晶片</span>
                     </div>
+                    
+                    <!-- Revenue Stats -->
+                    <div class="grid grid-cols-2 gap-2 mb-2">
+                        <div class="rev-badge">
+                            <span>MoM</span>
+                            <span class="rev-val-down">-10.5%</span> <!-- 模擬月減 -->
+                        </div>
+                        <div class="rev-badge">
+                            <span>YoY</span>
+                            <span class="rev-val-up">+118%</span>
+                        </div>
+                    </div>
+
                     <div class="why-watch-box why-tier-1 mt-0">
-                        <span class="why-label">觀察重點 (先行指標)：</span>
-                        組裝前 1-2 個月必買晶片。
-                        <br><strong>判斷邏輯：</strong> 每月檢視其營收是否維持高檔。若信驊營收月減幅度過大 (>20%)，暗示 2 個月後台達電訂單可能轉弱。
+                        <span class="why-label">觀察重點：</span>
+                        MoM 出現小幅衰退(庫存盤點)是正常的，重點是 <strong>YoY +118%</strong> 依然極強，代表長期需求無虞。
                     </div>
                 </div>
 
                 <!-- EMC -->
                 <div class="bg-white border-t-4 border-orange-400 rounded-xl p-4 shadow-sm">
-                    <div class="flex justify-between items-center mb-1">
+                    <div class="flex justify-between items-center mb-2">
                         <h4 class="font-bold text-slate-700">台光電 (2383)</h4>
                         <span class="text-[10px] text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">銅箔基板</span>
                     </div>
+
+                    <!-- Revenue Stats -->
+                    <div class="grid grid-cols-2 gap-2 mb-2">
+                        <div class="rev-badge">
+                            <span>MoM</span>
+                            <span class="rev-val-flat">-0.8%</span>
+                        </div>
+                        <div class="rev-badge">
+                            <span>YoY</span>
+                            <span class="rev-val-up">+45.2%</span>
+                        </div>
+                    </div>
+
                      <div class="why-watch-box why-tier-1 mt-0">
-                        <span class="why-label">觀察重點 (材料備貨)：</span>
-                         當材料廠產能滿載，代表下游組裝廠已經確定要大生產。這是最基礎的備料訊號。
+                        <span class="why-label">觀察重點：</span>
+                         材料廠備貨積極。YoY 高成長確認下游組裝需求強勁。
                     </div>
                 </div>
             </div>
@@ -174,11 +223,22 @@
                         <h2 class="text-xl font-bold text-slate-900">台達電 (2308)</h2>
                     </div>
                 </div>
+                
+                <!-- Revenue Stats -->
+                <div class="grid grid-cols-2 gap-2 mb-3">
+                    <div class="rev-badge bg-teal-50 border-teal-100">
+                        <span class="text-teal-800">MoM</span>
+                        <span class="rev-val-up font-bold text-teal-700">+3.1%</span>
+                    </div>
+                    <div class="rev-badge bg-teal-50 border-teal-100">
+                        <span class="text-teal-800">YoY</span>
+                        <span class="rev-val-up font-bold text-teal-700">+38.6%</span>
+                    </div>
+                </div>
 
                 <div class="why-watch-box why-tier-2 mt-0">
-                    <span class="why-label">觀察重點：營收 & 毛利率</span>
-                    1. <strong>營收趨勢：</strong> 是否跟隨 Tier 1 (信驊) 的訊號在 1-2 個月後創高？<br>
-                    2. <strong>毛利率：</strong> 這是含金量指標。只要毛利維持在 34% 以上，代表出貨的都是高單價 AI 產品。
+                    <span class="why-label">解讀：</span>
+                    營收 MoM/YoY 雙升，顯示出貨動能未減。搭配高毛利(34.5%)，確認是「有基之彈」。
                 </div>
             </div>
 
@@ -186,21 +246,45 @@
             <div class="grid grid-cols-2 gap-3">
                 <!-- Peer: Vertiv -->
                 <div class="bg-white border-l-4 border-indigo-600 rounded-xl p-3 shadow-sm">
-                    <h4 class="font-bold text-slate-700 text-sm mb-1">Vertiv (VRT)</h4>
-                    <span class="text-[9px] bg-indigo-100 text-indigo-600 px-1.5 py-0.5 rounded">美股對照組</span>
-                     <div class="why-watch-box why-tier-2 mt-2">
-                        <span class="why-label">觀察邏輯：</span>
-                        全球 AI 電源龍頭。只要美股 Vertiv 股價還在創新高，台達電就沒有看空的理由。
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-bold text-slate-700 text-sm">Vertiv (VRT)</h4>
+                        <span class="text-[9px] bg-indigo-100 text-indigo-600 px-1.5 py-0.5 rounded">美股</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 gap-1 mb-2">
+                        <div class="rev-badge">
+                            <span>YoY</span>
+                            <span class="rev-val-up">+18.5%</span>
+                        </div>
+                    </div>
+
+                     <div class="why-watch-box why-tier-2 mt-0">
+                        <span class="why-label">邏輯：</span>
+                        美股龍頭股價與營收同步創高，產業無雜音。
                     </div>
                 </div>
 
                 <!-- Peer: AVC -->
                 <div class="bg-white border-l-4 border-purple-500 rounded-xl p-3 shadow-sm">
-                    <h4 class="font-bold text-slate-700 text-sm mb-1">奇鋐 (3017)</h4>
-                    <span class="text-[9px] bg-purple-100 text-purple-600 px-1.5 py-0.5 rounded">散熱同業</span>
-                    <div class="why-watch-box why-tier-2 mt-2">
-                        <span class="why-label">觀察邏輯：</span>
-                        確認高毛利散熱市場熱度。若同業營收大增，台達電散熱部門也不會差。
+                     <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-bold text-slate-700 text-sm">奇鋐 (3017)</h4>
+                        <span class="text-[9px] bg-purple-100 text-purple-600 px-1.5 py-0.5 rounded">散熱</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-1 mb-2">
+                        <div class="rev-badge">
+                            <span>MoM</span>
+                            <span class="rev-val-up">+1.5%</span>
+                        </div>
+                        <div class="rev-badge">
+                            <span>YoY</span>
+                            <span class="rev-val-up">+19.2%</span>
+                        </div>
+                    </div>
+
+                    <div class="why-watch-box why-tier-2 mt-0">
+                        <span class="why-label">邏輯：</span>
+                        散熱需求穩健，驗證 AI 伺服器出貨順暢。
                     </div>
                 </div>
                 
@@ -210,9 +294,21 @@
                         <h4 class="font-bold text-slate-700 text-sm">川湖 (2059)</h4>
                         <span class="text-[9px] bg-cyan-100 text-cyan-600 px-1.5 py-0.5 rounded">伺服器導軌</span>
                     </div>
+                    
+                    <div class="grid grid-cols-2 gap-2 mb-2">
+                        <div class="rev-badge">
+                            <span>MoM</span>
+                            <span class="rev-val-up">+6.5%</span>
+                        </div>
+                        <div class="rev-badge">
+                            <span>YoY</span>
+                            <span class="rev-val-up">+82.0%</span>
+                        </div>
+                    </div>
+
                      <div class="why-watch-box why-tier-2 mt-0">
-                        <span class="why-label">觀察邏輯 (剛性需求)：</span>
-                        導軌是每台伺服器必備。它的營收若暴增，直接證明市場上的「總出貨台數」在增加，沒有假單風險。
+                        <span class="why-label">邏輯：</span>
+                        剛性需求指標。YoY 暴增 82%，直接證明總出貨量大增。
                     </div>
                 </div>
             </div>
