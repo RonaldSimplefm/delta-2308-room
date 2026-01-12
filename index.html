@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>台達電 (2308) 股東戰情室 | 核心邏輯版</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans TC', sans-serif; -webkit-tap-highlight-color: transparent; }
+        
+        /* 連接線效果 */
+        .flow-arrow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: -8px 0;
+            z-index: 10;
+            position: relative;
+        }
+        .flow-line {
+            height: 16px;
+            width: 2px;
+            background-color: #cbd5e1;
+        }
+        .chart-wrapper {
+            position: relative;
+            height: 220px;
+            width: 100%;
+        }
+        .why-watch-box {
+            background-color: #f8fafc;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            line-height: 1.5;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+        /* Color-coded left borders for Why Watch boxes */
+        .why-tier-0 { border-left: 3px solid #3b82f6; }
+        .why-tier-1 { border-left: 3px solid #fbbf24; }
+        .why-tier-2 { border-left: 3px solid #14b8a6; }
+        .why-logic  { border-left: 3px solid #64748b; }
+
+        .why-label {
+            font-weight: 700;
+            color: #334155;
+            display: block;
+            margin-bottom: 0.25rem;
+            font-size: 0.8rem;
+        }
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 pb-12">
+
+    <!-- Sticky Header (Removed Prices) -->
+    <header class="sticky-header shadow-sm border-b border-slate-200 px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <span class="bg-teal-500 text-white w-8 h-8 rounded-lg flex items-center justify-center text-lg shadow-md">⚡</span>
+            <div>
+                <h1 class="text-lg font-bold text-slate-900 leading-tight">台達電 (2308)</h1>
+                <p class="text-[10px] text-slate-500">股東戰情室 - 邏輯架構版</p>
+            </div>
+        </div>
+        <!-- Right side simplified -->
+        <div class="text-right">
+            <div class="text-[10px] text-slate-400 bg-slate-100 px-2 py-1 rounded-full border border-slate-200">
+                長期持有策略
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-md mx-auto px-3 py-4 space-y-4">
+        
+        <!-- Info Bar (Generalized) -->
+        <div class="bg-white rounded-xl p-3 shadow-sm border border-slate-200 text-xs text-slate-500 flex justify-between items-center">
+            <span><strong>關鍵事件提醒：</strong></span>
+            <span class="bg-blue-50 text-blue-600 px-2 py-1 rounded font-bold">留意每季台積電法說</span>
+        </div>
+
+        <!-- REMOVED: Chip Analysis Guide -->
+
+        <!-- TIER 0: The Ceiling (TSMC) -->
+        <div>
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2 px-1">
+                <span class="w-2 h-2 rounded-full bg-blue-500"></span> Tier 0: 總量天花板
+            </h3>
+            <div class="bg-white border-l-4 border-blue-500 rounded-xl p-4 shadow-sm relative overflow-hidden">
+                <div class="absolute -right-4 -top-4 opacity-5 pointer-events-none">
+                    <svg class="w-32 h-32 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                </div>
+
+                <div class="relative z-10">
+                    <div class="flex justify-between items-start mb-3">
+                        <h2 class="text-lg font-bold text-slate-800">台積電 (2330)</h2>
+                        <span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-bold">CoWoS 產能</span>
+                    </div>
+                    
+                    <div class="why-watch-box why-tier-0 mt-0">
+                        <span class="why-label">為什麼要觀察台積電？</span>
+                        它是源頭活水。AI 晶片 (GPU) 100% 卡在 CoWoS 封裝產能。
+                        <br><strong>判斷邏輯：</strong> 只要法說會提到「產能緊缺」或「擴產加速」，台達電的長線趨勢就是安全的。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flow Connector -->
+        <div class="flow-arrow"><div class="flow-line"></div></div>
+        <div class="flow-arrow text-slate-300 text-[10px] mb-1">▼</div>
+
+        <!-- TIER 1: Upstream Signals -->
+        <div>
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2 px-1">
+                <span class="w-2 h-2 rounded-full bg-amber-400"></span> Tier 1: 上游領先訊號
+            </h3>
+            <div class="space-y-3">
+                <!-- Aspeed -->
+                <div class="bg-white border-t-4 border-amber-400 rounded-xl p-4 shadow-sm">
+                    <div class="flex justify-between items-center mb-1">
+                        <h4 class="font-bold text-slate-700">信驊 (5274)</h4>
+                        <span class="text-[10px] text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">BMC 晶片</span>
+                    </div>
+                    <div class="why-watch-box why-tier-1 mt-0">
+                        <span class="why-label">觀察重點 (先行指標)：</span>
+                        組裝前 1-2 個月必買晶片。
+                        <br><strong>判斷邏輯：</strong> 每月檢視其營收是否維持高檔。若信驊營收月減幅度過大 (>20%)，暗示 2 個月後台達電訂單可能轉弱。
+                    </div>
+                </div>
+
+                <!-- EMC -->
+                <div class="bg-white border-t-4 border-orange-400 rounded-xl p-4 shadow-sm">
+                    <div class="flex justify-between items-center mb-1">
+                        <h4 class="font-bold text-slate-700">台光電 (2383)</h4>
+                        <span class="text-[10px] text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">銅箔基板</span>
+                    </div>
+                     <div class="why-watch-box why-tier-1 mt-0">
+                        <span class="why-label">觀察重點 (材料備貨)：</span>
+                         當材料廠產能滿載，代表下游組裝廠已經確定要大生產。這是最基礎的備料訊號。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flow Connector -->
+        <div class="flow-arrow"><div class="flow-line"></div></div>
+        <div class="flow-arrow text-slate-300 text-[10px] mb-1">▼</div>
+
+        <!-- TIER 2: Midstream Components -->
+        <div>
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2 px-1">
+                <span class="w-2 h-2 rounded-full bg-teal-500"></span> Tier 2: 關鍵零組件
+            </h3>
+            
+            <!-- MAIN TARGET: DELTA -->
+            <div class="bg-white border-t-4 border-teal-500 rounded-xl p-4 shadow-md relative mb-3">
+                 <div class="absolute top-3 right-3 bg-teal-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide shadow-sm">
+                    Your Holding
+                </div>
+                
+                <div class="mb-2">
+                     <div class="flex items-center gap-2 mb-1">
+                        <h2 class="text-xl font-bold text-slate-900">台達電 (2308)</h2>
+                    </div>
+                </div>
+
+                <div class="why-watch-box why-tier-2 mt-0">
+                    <span class="why-label">觀察重點：營收 & 毛利率</span>
+                    1. <strong>營收趨勢：</strong> 是否跟隨 Tier 1 (信驊) 的訊號在 1-2 個月後創高？<br>
+                    2. <strong>毛利率：</strong> 這是含金量指標。只要毛利維持在 34% 以上，代表出貨的都是高單價 AI 產品。
+                </div>
+            </div>
+
+            <!-- Peers Grid -->
+            <div class="grid grid-cols-2 gap-3">
+                <!-- Peer: Vertiv -->
+                <div class="bg-white border-l-4 border-indigo-600 rounded-xl p-3 shadow-sm">
+                    <h4 class="font-bold text-slate-700 text-sm mb-1">Vertiv (VRT)</h4>
+                    <span class="text-[9px] bg-indigo-100 text-indigo-600 px-1.5 py-0.5 rounded">美股對照組</span>
+                     <div class="why-watch-box why-tier-2 mt-2">
+                        <span class="why-label">觀察邏輯：</span>
+                        全球 AI 電源龍頭。只要美股 Vertiv 股價還在創新高，台達電就沒有看空的理由。
+                    </div>
+                </div>
+
+                <!-- Peer: AVC -->
+                <div class="bg-white border-l-4 border-purple-500 rounded-xl p-3 shadow-sm">
+                    <h4 class="font-bold text-slate-700 text-sm mb-1">奇鋐 (3017)</h4>
+                    <span class="text-[9px] bg-purple-100 text-purple-600 px-1.5 py-0.5 rounded">散熱同業</span>
+                    <div class="why-watch-box why-tier-2 mt-2">
+                        <span class="why-label">觀察邏輯：</span>
+                        確認高毛利散熱市場熱度。若同業營收大增，台達電散熱部門也不會差。
+                    </div>
+                </div>
+                
+                <!-- Peer: King Slide (Full width on mobile grid) -->
+                <div class="bg-white border-l-4 border-cyan-500 rounded-xl p-3 shadow-sm col-span-2">
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-bold text-slate-700 text-sm">川湖 (2059)</h4>
+                        <span class="text-[9px] bg-cyan-100 text-cyan-600 px-1.5 py-0.5 rounded">伺服器導軌</span>
+                    </div>
+                     <div class="why-watch-box why-tier-2 mt-0">
+                        <span class="why-label">觀察邏輯 (剛性需求)：</span>
+                        導軌是每台伺服器必備。它的營收若暴增，直接證明市場上的「總出貨台數」在增加，沒有假單風險。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial Breakdown -->
+        <div class="mt-6">
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2 px-1">
+                📊 營收結構 (AI 含金量)
+            </h3>
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-4">
+                <div class="chart-wrapper">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+                <div class="mt-3 text-[10px] text-slate-500 text-center leading-relaxed">
+                    <span class="inline-block w-2 h-2 rounded-full bg-teal-500 mr-1"></span>電源(50%) 與 
+                    <span class="inline-block w-2 h-2 rounded-full bg-indigo-500 mr-1"></span>基礎設施(25%) 
+                    <br>包含了關鍵的 <span class="font-bold text-indigo-600">AI 伺服器電源與散熱</span>。
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Checklist -->
+        <div class="bg-indigo-900 rounded-xl shadow-lg p-5 text-white mt-6">
+            <h3 class="text-sm font-bold flex items-center gap-2 mb-4">
+                <span class="w-5 h-5 rounded-full bg-indigo-700 flex items-center justify-center text-xs">📋</span>
+                股東行動清單 (檢查表)
+            </h3>
+            <ul class="space-y-3">
+                <li class="flex gap-3 items-start opacity-90">
+                    <span class="w-5 h-5 rounded-full bg-indigo-700 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">1</span>
+                    <span class="text-xs font-medium leading-relaxed"><strong>確認上游：</strong> 信驊/台光電月營收是否維持高檔？(無大幅月減)</span>
+                </li>
+                <li class="flex gap-3 items-start opacity-90">
+                    <span class="w-5 h-5 rounded-full bg-indigo-700 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">2</span>
+                    <span class="text-xs font-medium leading-relaxed"><strong>確認國際盤：</strong> 美股 Vertiv 是否維持多頭趨勢？</span>
+                </li>
+                <li class="flex gap-3 items-start text-amber-300 font-bold">
+                    <span class="w-5 h-5 rounded-full bg-amber-500/20 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 text-amber-300">3</span>
+                    <span class="text-xs leading-relaxed"><strong>結論：</strong> 若上述兩點皆為 YES，則台達電續抱。</span>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        // Revenue Mix Chart
+        const ctxRev = document.getElementById('revenueChart').getContext('2d');
+        const revChart = new Chart(ctxRev, {
+            type: 'doughnut',
+            data: {
+                labels: ['電源及零組件', '基礎設施 (AI)', '自動化', '交通 (EV)'],
+                datasets: [{
+                    data: [50, 25, 13, 12], 
+                    backgroundColor: [
+                        '#14b8a6', // Teal (Power)
+                        '#6366f1', // Indigo (Infra/AI)
+                        '#fbbf24', // Amber (Automation)
+                        '#f43f5e'  // Rose (EV)
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: { boxWidth: 10, font: { size: 10 } }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.raw + '%';
+                            }
+                        }
+                    }
+                },
+                cutout: '65%'
+            }
+        });
+    </script>
+</body>
+</html>
